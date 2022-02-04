@@ -55,7 +55,7 @@ resource "azurerm_storage_container" "sc" {
 
 data "archive_file" "ffa" {
   type        = "zip"
-  source_dir  = "../slackbotazfunction/SlackBot/"
+  source_dir  = "../slackbotazfunction/"
   output_path = "src.zip"
 }
 
