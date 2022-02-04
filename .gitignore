@@ -27,3 +27,6 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+
+#As a result of the terraform plan, a source file is zipped to the root of this directory. As a result, all .zip files should not be tracked.
+*.zip
