@@ -96,11 +96,13 @@ resource "azurerm_function_app" "app" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   app_service_plan_id = azurerm_app_service_plan.sp.id
+  os_type             = "linux"
   app_settings = {
     FUNCTIONS_WORKER_RUNTIME = "python",
     WEBSITE_RUN_FROM_PACKAGE = "https://${azurerm_storage_account.sa.name}.blob.core.windows.net/${azurerm_storage_container.sc.name}/${azurerm_storage_blob.storage_blob.name}${data.azurerm_storage_account_blob_container_sas.sabcs.sas}",
     AzureWebJobsStorage = azurerm_storage_account.sa.primary_connection_string,
     APPINSIGHTS_INSTRUMENTATIONKEY = azurerm_application_insights.ai.instrumentation_key,
+    SLACK_API_TOKEN = var.slack_api_token
   }
   storage_account_name       = azurerm_storage_account.sa.name
   storage_account_access_key = azurerm_storage_account.sa.primary_access_key

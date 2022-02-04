@@ -21,3 +21,13 @@ variable "app_service_plan_tier"{
 variable "app_service_plan_size"{
   default = "Y1"
 }
+
+variable "slack_api_token" {
+  type        = string
+  description = "OAUTH token to communicate to slack with."
+
+  validation {
+    condition     = length(var.slack_api_token) > 4 && substr(var.slack_api_token, 0, 4) == "xoxb"
+    error_message = "The token should start with xoxb."
+  }
+}
